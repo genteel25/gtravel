@@ -282,13 +282,10 @@ class _CalendarViewState extends State<CalendarView> {
     firstDay = DateTime(widget.year, widget.month, 1);
     startingWeekday = firstDay.weekday;
     // if (widget.isEdit) {
-    (widget.item.travelDays ?? []).forEach((item) {
+    for (var item in (widget.item.travelDays ?? [])) {
       context.read<CalendarCubit>().insertTravelRange(item);
-      log("travel ranges: $item");
-    });
-    // } else {
+    }
     travelData = widget.item.travelDays ?? [];
-    // }
 
     if (widget.isEdit) {
       calenderCellColorHandler(
@@ -358,7 +355,6 @@ class _CalendarViewState extends State<CalendarView> {
           return const SizedBox.shrink();
         }
         final day = index - startingWeekday + 1;
-        // calendarCellColorHandler(day);
         List<TravelRangeData> datas = currentRangeData.startDay?.day != null &&
                 currentRangeData.startDay!.day!.isNotEmpty &&
                 day.toString() == currentRangeData.startDay?.day
@@ -369,7 +365,6 @@ class _CalendarViewState extends State<CalendarView> {
                     item.startDay!.day!.intParser(),
                     item.endDay!.day!.intParser()))
                 .toList();
-        // log("start day: ${datas.length}");
         return InkWell(
           onTap: () => calenderCellColorHandler(day),
           child: Container(

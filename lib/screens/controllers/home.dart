@@ -20,7 +20,7 @@ class HomeController extends State<HomeScreen> {
   void initState() {
     initializeToday();
     super.initState();
-    // context.read<CalendarCubit>().fetchCalender();
+    context.read<CalendarCubit>().fetchCalender();
     context
         .read<CalendarCubit>()
         .addTravelRangesToCalender(item: thisMonthDays.first);
